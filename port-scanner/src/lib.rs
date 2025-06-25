@@ -28,11 +28,11 @@ impl Config {
 // Program logic
 pub fn run(config: Config) -> Result<(), Box<dyn Error>>{
 	// Checking arguments
-	let domain = config.url.domain().ok_or("No domain found in URL")?; 
+	let host = config.url.host_str().ok_or("No host found")?; 
 
 	// Computation
 	print_title();	
-	ping_domain(&domain)?;	
+	ping_host(&host)?;	
 	scan(&config);	
 	Ok(())
 }
@@ -54,7 +54,7 @@ fn print_title() {
 	println!();
 }
 
-fn ping_domain (domain: &str) -> Result<(), Box<dyn Error>> {
+fn ping_host(domain: &str) -> Result<(), Box<dyn Error>> {
 	print!("Checking if {domain} is up...");
 	
 	let output = Command::new("ping").arg("-c").arg("1").arg(domain).output()?;
