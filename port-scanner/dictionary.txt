@@ -1,0 +1,6 @@
+home
+admin
+login
+jorge
+wp-content
+test
